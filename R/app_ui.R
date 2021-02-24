@@ -3,14 +3,37 @@
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @import shinydashboard
 #' @noRd
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-    fluidPage(
-      h1("shinyManagerExample")
+    dashboardPage(
+      dashboardHeader(title  ="ddd",
+                      dropdownMenuOutput("user_menu")
+                      # dropdownMenu(
+                      #    notificationItem(
+                      #      "Lefkios"
+                      #    ),
+                      #    headerText = "Logged in as:",
+                      #    badgeStatus = NULL,
+                      #   type = "notifications",
+                      #   icon = icon("user")
+                      # )
+      ),
+      dashboardSidebar(),
+      dashboardBody(
+        #h1("shinyManagerExample"),
+        #verbatimTextOutput("auth_output"),
+        #h3("the user"),
+        #verbatimTextOutput("user")
+      )
+      
+      
+      
+      
     )
   )
 }
@@ -28,7 +51,7 @@ golem_add_external_resources <- function(){
   add_resource_path(
     'www', app_sys('app/www')
   )
- 
+  
   tags$head(
     favicon(),
     bundle_resources(
